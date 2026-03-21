@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lighting Coach</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>💡 Lighting Coach</h1>
+            <p class="subtitle">Real-time lighting feedback, in plain English</p>
+        </header>
+
+        <!-- Camera view -->
+        <div class="camera-container">
+            <video id="video" autoplay playsinline muted></video>
+            <canvas id="overlay"></canvas>
+            <div id="loading" class="loading">
+                <div class="spinner"></div>
+                <p>Loading face detection...</p>
+            </div>
+        </div>
+
+        <!-- Score summary (hidden until first analysis) -->
+        <div id="score-summary" class="score-summary hidden">
+            Lighting Score: <strong><span id="scoreValue" class="score-number">--</span>/100</strong>
+            &nbsp;·&nbsp;
+            <strong><span id="issueCount">0</span></strong> issue<span id="issuePlural">s</span> detected
+        </div>
+
+        <!-- Issue navigation (hidden until first analysis) -->
+        <div id="issue-nav" class="issue-nav hidden">
+            <div class="issue-counter" id="issueCounter"></div>
+            <div class="issue-card" id="issueCard">
+                <div class="issue-header">
+                    <span class="issue-icon">🎬</span>
+                    <span class="issue-title">Ready when you are</span>
+                </div>
+                <div class="issue-body">Click "Start Session" then "Analyze" to check your lighting.</div>
+            </div>
+            <div class="issue-nav-buttons">
+                <button id="prevBtn" class="btn btn-nav" disabled>← Prev</button>
+                <button id="nextBtn" class="btn btn-nav" disabled>Next →</button>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="controls">
+            <button id="startBtn" class="btn btn-primary">
+                <span class="btn-icon">🎬</span>
+                Start Session
+            </button>
+            <button id="analyzeBtn" class="btn btn-analyze" disabled>
+                <span class="btn-icon">🔍</span>
+                Analyze
+            </button>
+            <button id="captureBtn" class="btn btn-secondary" disabled>
+                <span class="btn-icon">💾</span>
+                Save
+            </button>
+        </div>
+
+        <!-- AI Coaching Panel -->
+        <div class="ai-panel">
+            <div class="ai-panel-header">
+                <span class="ai-icon">🤖</span>
+                <h3>AI Coach</h3>
+                <button id="aiBtn" class="btn btn-ai" disabled>
+                    <span class="btn-icon">🤖</span>
+                    Get AI Coaching
+                </button>
+            </div>
+            <div class="ai-content" id="ai-content">
+                <span class="ai-placeholder">Analyze your lighting first, then I'll give you personalized tips.</span>
+            </div>
+        </div>
+
+        <!-- Reference lighting setups (collapsible) -->
+        <div class="refs-section">
+            <button id="toggleRefsBtn" class="toggle-refs-btn">Show lighting setups ▾</button>
+            <div id="refs-panel" class="refs-panel"></div>
+        </div>
+    </div>
+
+    <script defer src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
