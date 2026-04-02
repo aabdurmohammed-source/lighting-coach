@@ -3,3 +3,7 @@ __pycache__/
 *.pyc
 models/
 .claude/
+ai-collab.md
+agents/
+test-results.json
+test-photos/
